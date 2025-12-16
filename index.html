@@ -1,73 +1,39 @@
+html do GitHub 
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>TV Moldagem</title>
-
+  <title>Planilha TV Moldagem</title>
   <style>
-    html, body {
+    body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
       background: #000;
-      overflow: hidden;
+      color: #fff;
+      font-family: Arial, sans-serif;
     }
-
-    .wrapper {
-      position: relative;
+    iframe {
+      border: none;
       width: 100vw;
       height: 100vh;
-      overflow: hidden;
-    }
-
-    iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      border: none;
-      width: 125vw;
-      height: 125vh;
-      transform: scale(0.8);
-      transform-origin: top left;
-      background: #000;
-    }
-
-    .hidden {
-      display: none;
     }
   </style>
 </head>
-
 <body>
-  <div class="wrapper">
-    <iframe
-      id="iframeAtual"
-      src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSGr-JVMo5D1Ppn7pCbNDOY1siPo84sRuD2UakP0o3yz3R3114iAgFVBG2hw4PdvOn5Gy7KSqb6v1cm/pubhtml?gid=1272920932&single=true">
-    </iframe>
-  </div>
+  <iframe 
+    id="planilha"
+    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSGr-JVMo5D1Ppn7pCbNDOY1siPo84sRuD2UakP0o3yz3R3114iAgFVBG2hw4PdvOn5Gy7KSqb6v1cm/pubhtml?gid=1272920932&amp;single=true"
+    allowfullscreen>
+  </iframe>
 
   <script>
-    const PLANILHA_URL =
-      "https://docs.google.com/spreadsheets/d/e/2PACX-1vSGr-JVMo5D1Ppn7pCbNDOY1siPo84sRuD2UakP0o3yz3R3114iAgFVBG2hw4PdvOn5Gy7KSqb6v1cm/pubhtml?gid=1272920932&single=true";
-
-    const INTERVALO = 240000; // 4 minutos
-
+    // Recarrega o iframe a cada 4 minutos (240000 ms)
     setInterval(() => {
-      const iframeNovo = document.createElement("iframe");
-      iframeNovo.src = PLANILHA_URL;
-      iframeNovo.className = "hidden";
-
-      iframeNovo.onload = () => {
-        const iframeAtual = document.getElementById("iframeAtual");
-        iframeAtual.replaceWith(iframeNovo);
-        iframeNovo.id = "iframeAtual";
-        iframeNovo.classList.remove("hidden");
-      };
-
-      document.body.appendChild(iframeNovo);
-    }, INTERVALO);
+      const iframe = document.getElementById("planilha");
+      iframe.src = iframe.src;
+    }, 240000);
   </script>
 </body>
 </html>
-
